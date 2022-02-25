@@ -5,20 +5,13 @@ namespace MyProject\Controllers;
 use MyProject\Exceptions\InvalidArgumentException;
 use MyProject\Exceptions\ActivationException;
 use MyProject\Models\Users\User;
+use MyProject\Models\Users\UsersAuthService;
 use MyProject\Models\Users\UserActivationService;
 use MyProject\Services\EmailSender;
-use MyProject\View\View;
 
-class UsersController
+
+class UsersController extends AbstractController
 {
-    /** @var View */
-    private $view;
-
-    public function __construct()
-    {
-        $this->view = new View(__DIR__ . '/../../../templates');
-    }
-
     public function signUp()
     {
         if (!empty($_POST)) {
@@ -69,6 +62,30 @@ class UsersController
         } catch (ActivationException $e) {
             $this->view->renderHtml('users/activationFailed.php', ['error' => $e->getMessage()]);
         }
+
+    }
+
+    public function login()
+    {
+        if (!empty($_POST)) {
+            try {
+                $user = User::login($_POST);
+                UsersAuthService::createToken($user);
+                header('Location: /');
+                exit();
+            } catch (InvalidArgumentException $e) {
+                $this->view->renderHtml('users/login.php', ['error' => $e->getMessage()]);
+                return;
+            }
+        }
+
+        $this->view->renderHtml('users/login.php');
+    }
+
+    public function logOut()
+    {
+        setcookie('token', '', -1, '/', '', false, true);
+        header('Location: /');
     }
 
 }
