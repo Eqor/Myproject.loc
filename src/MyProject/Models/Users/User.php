@@ -36,6 +36,7 @@ class User extends ActiveRecordEntity
         return $this->nickname;
     }
 
+
     public static function signUp(array $userData)
     {
         if (empty($userData['nickname'])) {
@@ -82,8 +83,20 @@ class User extends ActiveRecordEntity
         return $user;
     }
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function activate(): void
+    {
+        $this->isConfirmed = true;
+        $this->save();
+    }
+
     protected static function getTableName(): string
     {
         return 'users';
     }
+
 }
