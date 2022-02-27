@@ -140,6 +140,11 @@ class User extends ActiveRecordEntity
         return $this->authToken;
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
     protected static function getTableName(): string
     {
         return 'users';
