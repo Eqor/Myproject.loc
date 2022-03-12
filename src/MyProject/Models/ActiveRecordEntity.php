@@ -33,7 +33,7 @@ abstract class ActiveRecordEntity
      */
     public static function findAll(): array
     {
-        $db = $db = Db::getInstance();
+        $db  = Db::getInstance();
         return $db->query('SELECT * FROM `' . static::getTableName() . '`;', [], static::class);
     }
 

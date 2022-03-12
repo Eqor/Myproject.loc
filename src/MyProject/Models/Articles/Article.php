@@ -68,6 +68,7 @@ class Article extends ActiveRecordEntity
         $this->authorId = $user->getId();
     }
 
+
     public static function createFromArray(array $fields, User $author): Article
     {
         if(empty($fields['name'])) {

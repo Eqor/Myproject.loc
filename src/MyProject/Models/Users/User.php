@@ -5,6 +5,7 @@ namespace MyProject\Models\Users;
 use MyProject\Exceptions\InvalidArgumentException;
 use MyProject\Models\ActiveRecordEntity;
 
+
 class User extends ActiveRecordEntity
 {
     /** @var string */
@@ -144,6 +145,9 @@ class User extends ActiveRecordEntity
     {
         return $this->role === 'admin';
     }
+
+
+
 
     protected static function getTableName(): string
     {
