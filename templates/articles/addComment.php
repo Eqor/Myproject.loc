@@ -21,9 +21,8 @@
     <p>Войдите, чтобы написать комментарий</p>
 <?php endif; ?>
 <?php if (!empty($comments)): ?>
-    <?php  var_dump($comments)?>
     <?php foreach ($comments as $comment): ?>
-        <h3><?= $comment->getUserComment()->getNickname() ?></h3>
+        <h3><?= $comment->getUserComment()->getNickname() ?> | Дата комментария <?= $comment->getTimeCreatedComment()?></h3>
         <p><?= $comment->getTextComment() ?></p>
         <?php if (!empty($user) && ($user->isAdmin() || ($user->getId() === $comment->getUserComment()->getId()))):?>
             <a href="http://myproject.loc/comments/<?= $comment->getId() ?>/edit">Исправить комментарий </a>
