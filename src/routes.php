@@ -11,6 +11,7 @@ return [
     '~^$~' => [\MyProject\Controllers\MainController::class, 'main'],
     '~^articles/(\d+)/comment$~' => [\MyProject\Controllers\ArticlesController::class, 'addComment'],
     '~^comments/(\d+)/edit$~' => [\MyProject\Controllers\ArticlesController::class, 'editComment'],
+
 ];
 
 //

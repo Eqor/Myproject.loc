@@ -114,5 +114,11 @@ class Comment extends ActiveRecordEntity
         return User::getById($this->userId);
     }
 
+    public function getTimeCreatedComment(): string
+    {
+       return $this->createdAt;
+    }
+
+
 
 }
