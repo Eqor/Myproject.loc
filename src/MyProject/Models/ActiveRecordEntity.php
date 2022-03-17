@@ -38,6 +38,18 @@ abstract class ActiveRecordEntity
     }
 
     /**
+     * @return static[]
+     */
+    public static function findLast(): array
+    {
+        $db  = Db::getInstance();
+        return $db->query('SELECT * FROM `' . static::getTableName() . '`ORDER BY id ASC LIMIT 3;',
+            [],
+            static::class
+        );
+    }
+
+    /**
      * @param int $id
      * @return static|null
      */

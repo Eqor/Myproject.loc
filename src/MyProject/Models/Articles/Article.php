@@ -35,6 +35,13 @@ class Article extends ActiveRecordEntity
     {
         return $this->text;
     }
+    /**
+     * @return string
+     */
+    public function getShortText(): string
+    {
+        return substr($this->text,0,10) ;
+    }
 
     /**
      * @return User
