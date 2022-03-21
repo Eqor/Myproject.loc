@@ -29,6 +29,7 @@ class Db
 
     public function query(string $sql, array $params = [], string $className = 'stdClass'): ?array
     {
+        var_dump($sql);
         $sth = $this->pdo->prepare($sql);
         $result = $sth->execute($params);
 
